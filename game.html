@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catch the Smiles Game</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-image: url('background.jpg'); /* Replace with your background image */
+            background-size: cover;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+
+        #player {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 100px;
+            background-image: url('happy-player.png'); /* Replace with your happy player image */
+            background-size: cover;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .falling-object {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-image: url('smile.png'); /* Replace with your smile image */
+            background-size: cover;
+            animation: fall 4s linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(100vh); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="player"></div>
+
+    <script>
+        const player = document.getElementById('player');
+        let score = 0;
+
+        function movePlayer(event) {
+            const x = event.clientX;
+            player.style.left = `${x - player.clientWidth / 2}px`;
+        }
+
+        function createFallingObject() {
+            const fallingObject = document.createElement('div');
+            fallingObject.className = 'falling-object';
+            fallingObject.style.left = `${Math.random() * (window.innerWidth - 50)}px`;
+            document.body.appendChild(fallingObject);
+
+            fallingObject.addEventListener('click', () => {
+                document.body.removeChild(fallingObject);
+                increaseScore();
+            });
+
+            fallingObject.addEventListener('animationiteration', () => {
+                document.body.removeChild(fallingObject);
+            });
+        }
+
+        function increaseScore() {
+            score++;
+            console.log('Score:', score);
+        }
+
+        document.addEventListener('mousemove', movePlayer);
+
+        setInterval(createFallingObject, 2000);
+    </script>
+
+</body>
+</html>
