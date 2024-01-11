@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Shows - Explore Exciting Destinations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .destination-card {
+            width: 300px;
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            display: inline-block;
+            vertical-align: top;
+            transition: transform 0.3s ease-in-out;
+            cursor: pointer;
+        }
+
+        .destination-card:hover {
+            transform: scale(1.05);
+        }
+
+        img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #555;
+        }
+
+        .advice-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .advice-modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Travel Shows - Explore Exciting Destinations</h1>
+
+    <div class="destination-card" onclick="showAdvice('Paris', 'paris.jpg', 'Explore the romantic streets of Paris.');">
+        <img src="paris.jpg" alt="Paris">
+        <h2>Paris</h2>
+        <p>City of Love</p>
+    </div>
+
+    <div class="destination-card" onclick="showAdvice('Tokyo', 'tokyo.jpg', 'Experience the vibrant culture of Tokyo.');">
+        <img src="tokyo.jpg" alt="Tokyo">
+        <h2>Tokyo</h2>
+        <p>Metropolis of Japan</p>
+    </div>
+
+    <div class="destination-card" onclick="showAdvice('New York', 'new-york.jpg', 'Discover the city that never sleeps.');">
+        <img src="new-york.jpg" alt="New York">
+        <h2>New York</h2>
+        <p>The Big Apple</p>
+    </div>
+
+    <!-- Add more destination cards as needed -->
+
+    <div class="advice-modal" id="adviceModal">
+        <div class="advice-modal-content">
+            <span class="close-btn" onclick="hideAdvice();">&times;</span>
+            <h2 id="adviceTitle"></h2>
+            <img id="adviceImage" alt="Destination Image">
+            <p id="adviceText"></p>
+        </div>
+    </div>
+
+    <script>
+        function showAdvice(title, imageSrc, text) {
+            document.getElementById('adviceTitle').innerText = title;
+            document.getElementById('adviceImage').src = imageSrc;
+            document.getElementById('adviceText').innerText = text;
+            document.getElementById('adviceModal').style.display = 'flex';
+        }
+
+        function hideAdvice() {
+            document.getElementById('adviceModal').style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>
